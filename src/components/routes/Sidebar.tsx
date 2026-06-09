@@ -268,8 +268,9 @@ function RoutesSidebarItem({ alias, routeKey }: { alias: string; routeKey: Route
 
 function ThemeAwareRouteIcon({ alias }: { alias: string }) {
   const themeAware = homeStore.ui.iconThemeAware.use()
-  return <AppIcon alias={alias} size={18} themeAware={themeAware}
-           
+  return <AppIcon alias={alias} size={18} themeAware={themeAware} />
+}
+
 function RoutesUptimeProvider() {
   useWebSocketApi<RouteStatusesByAlias>({
     endpoint: '/metrics/uptime',
