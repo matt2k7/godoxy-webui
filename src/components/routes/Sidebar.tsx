@@ -8,6 +8,7 @@ import {
   store,
   useSelectedRoute,
 } from '@/components/routes/store'
+import { store as homeStore } from '@/components/home/store'
 import { useWebSocketApi } from '@/hooks/websocket'
 import type { RouteStatusesByAlias, RouteUptimeAggregate, UptimeAggregate } from '@/lib/api'
 import { toastError } from '@/lib/toast'
@@ -244,7 +245,7 @@ function RoutesSidebarItem({ alias, routeKey }: { alias: string; routeKey: Route
     >
       <div className="flex justify-between items-center gap-4 flex-1">
         <div className="mt-0.5 flex items-center gap-2">
-          <AppIcon alias={alias} size={18} />
+          <ThemeAwareRouteIcon alias={alias} />
           <Label className="route-display-name">{displayName || alias}</Label>
         </div>
         <Render state={hideUptimebarState}>
@@ -265,6 +266,10 @@ function RoutesSidebarItem({ alias, routeKey }: { alias: string; routeKey: Route
   )
 }
 
+function ThemeAwareRouteIcon({ alias }: { alias: string }) {
+  const themeAware = homeStore.ui.iconThemeAware.use()
+  return <AppIcon alias={alias} size={18} themeAware={themeAware}
+           
 function RoutesUptimeProvider() {
   useWebSocketApi<RouteStatusesByAlias>({
     endpoint: '/metrics/uptime',
