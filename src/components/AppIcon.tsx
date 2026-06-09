@@ -54,9 +54,12 @@ function AppIcon({
   }, [variant, themeAware, resolvedTheme, alias, url])
 
   return (
-    <Avatar className={cn('rounded-md', className)} style={{ width: size, height: size }}>
-      <AvatarImage src={appIconUrl} />
-      <AvatarFallback>
+    <Avatar
+      className={cn('rounded-md after:rounded-md', className)}
+      style={{ width: size, height: size }}
+    >
+      <AvatarImage src={appIconUrl} className="rounded-none object-contain" />
+      <AvatarFallback className="rounded-md">
         {fallback ? fallback : alias ? alias.slice(0, 2).toUpperCase() : '?'}
       </AvatarFallback>
     </Avatar>
